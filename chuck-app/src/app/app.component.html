@@ -1,5 +1,15 @@
+<button (click)="showCardClicked()">SHow card</button>
+
+<app-joke-card *appDupicate="showCard" [joke]="joke" (buttonClicked)="buttonClicked($event)"></app-joke-card>
 
 
-<app-joke-card></app-joke-card>
+
+<span [ngSwitch]="joke">
+  <p *ngSwitchCase="'some string'"> No messages! </p>
+  <p *ngSwitchCase="'hello'"> {{ joke }} </p>
+  <ng-container *ngSwitchDefault>
+    <p *ngFor="let item of jokes">{{ item }}</p>
+  </ng-container>
+</span>
 
 <router-outlet></router-outlet>

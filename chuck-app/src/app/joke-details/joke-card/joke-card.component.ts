@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-joke-card',
   templateUrl: './joke-card.component.html',
   styleUrls: ['./joke-card.component.scss']
 })
-export class JokeCardComponent implements OnInit {
-  joke:string = 'some string';
+export class JokeCardComponent implements OnInit, OnChanges {
+  @Input() joke: string = 'some string';
+  @Output() buttonClicked: EventEmitter<string> = new EventEmitter();
+
   today: Date = new Date();
   cardContent = {
     title: 'Chuck joke',
@@ -16,6 +18,16 @@ export class JokeCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.joke);
+    console.log('component initialized');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+  }
+
+  likeClicked() {
+    this.buttonClicked.emit('like clicked');
   }
 
 }
