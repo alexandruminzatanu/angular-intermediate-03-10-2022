@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,8 @@ export class AppComponent implements OnInit {
 
   jokes: string[] = ['joke1', 'joke2', 'joke3'];
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     setTimeout(()=>{
       this.joke = 'new value';
@@ -23,6 +26,10 @@ export class AppComponent implements OnInit {
 
   buttonClicked(value: string) {
     console.log(value);
+  }
+
+  goToHome() {
+    this.router.navigate(['home']);
   }
 
   showCardClicked(){

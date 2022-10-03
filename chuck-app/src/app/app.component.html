@@ -1,4 +1,14 @@
-<button (click)="showCardClicked()">SHow card</button>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+  <span>Chuck App</span>
+  <span class="example-spacer"></span>
+  <button mat-raised-button color="accent" (click)="goToHome()">Home</button>
+  <button mat-raised-button color="accent" routerLink="categories">Categories</button>
+</mat-toolbar-row>
+</mat-toolbar>
+
+
+<!-- <button (click)="showCardClicked()">SHow card</button>
 
 <app-joke-card *appDupicate="showCard" [joke]="joke" (buttonClicked)="buttonClicked($event)"></app-joke-card>
 
@@ -10,6 +20,6 @@
   <ng-container *ngSwitchDefault>
     <p *ngFor="let item of jokes">{{ item }}</p>
   </ng-container>
-</span>
+</span> -->
 
 <router-outlet></router-outlet>
