@@ -9,8 +9,8 @@ export class JokeCardComponent implements OnInit {
   joke:string = 'some string';
   today: Date = new Date();
   cardContent = {
-    title: 'some title',
-    content: 'joke content'
+    title: 'Chuck joke',
+    content: 'Chuck Norris made a set of boxing speed bags out of Abe Vigodas earlobes'
   }
 
   constructor() { }
