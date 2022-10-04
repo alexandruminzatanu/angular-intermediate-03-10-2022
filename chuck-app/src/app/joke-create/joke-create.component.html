@@ -3,9 +3,22 @@
 
 <!-- <input [ngModel]="joke" (ngModelChange)="jokeChange($event)" /> -->
 
+<form [formGroup]="newReactiveJokeForm" (ngSubmit)="onReactiveSubmit()">
+    <input formControlName="author">
+    <div *ngIf="!newReactiveJokeForm.controls['author'].valid && newReactiveJokeForm.controls['author'].touched">Author is required!</div>
+    <div *ngIf="newReactiveJokeForm.controls['author'].errors && newReactiveJokeForm.controls['author'].errors['invalidValue']">
+        {{ newReactiveJokeForm.controls['author'].errors['invalidValue'].correctValue }}
+    </div>
 
+    <input formControlName="joke">
+    <div *ngIf="newReactiveJokeForm.controls['joke'].errors && newReactiveJokeForm.controls['joke'].errors['required']">Joke is required!</div>
+    <div *ngIf="newReactiveJokeForm.controls['joke'].errors && newReactiveJokeForm.controls['joke'].errors['minlength']">
+      Joke be at least 4 characters long.
+    </div>
 
-
+    <button type="submit">Register</button>
+    <button type="button" (click)="newReactiveJokeForm.reset()">Reset</button>
+</form>
 
 
 <!-- 
