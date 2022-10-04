@@ -1,4 +1,3 @@
-import { JokeDetailsModule } from './joke-details/joke-details.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,9 +8,9 @@ import { JokeCategoryListComponent } from './joke-category-list/joke-category-li
 import { HomeComponent } from './home/home.component';
 import { JokeItemComponent } from './joke-item/joke-item.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
+import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -24,9 +23,10 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    JokeDetailsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

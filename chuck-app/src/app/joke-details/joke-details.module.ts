@@ -6,12 +6,14 @@ import { JokeCardComponent } from './joke-card/joke-card.component';
 import { SuffixPipe } from './suffix.pipe';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { JokeTitleComponent } from './joke-title/joke-title.component';
 
 
 @NgModule({
   declarations: [
     JokeCardComponent,
-    SuffixPipe
+    SuffixPipe,
+    JokeTitleComponent
   ],
   imports: [
     CommonModule,
