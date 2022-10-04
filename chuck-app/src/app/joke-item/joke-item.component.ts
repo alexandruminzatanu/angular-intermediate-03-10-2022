@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ChuckApiService } from '../chuck-api.service';
 
 @Component({
   selector: 'app-joke-item',
@@ -12,7 +13,10 @@ export class JokeItemComponent implements OnInit, OnDestroy {
   currentCategory: string = '';
   joke: string = '';
   subs$: Subscription = new Subscription();
-  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router) { }
+
+  constructor(private activatedRoute: ActivatedRoute, public  chuckApiService: ChuckApiService, private router: Router) { }
+
+  apiHttpService = inject(ChuckApiService);
 
   ngOnDestroy(): void {
    this.subs$.unsubscribe();
@@ -30,8 +34,13 @@ export class JokeItemComponent implements OnInit, OnDestroy {
     }));
   }
 
+  increase() {
+   this.chuckApiService.counter+=1;
+  }
+
   private getJoke(category: string) {
-    this.httpClient.get(`https://api.chucknorris.io/jokes/random?category=${category}`).subscribe((data: any) => {
+
+    this.apiHttpService.getJokeFromCategory(category).subscribe((data: any) => {
       this.joke = data.value;
     })
   }

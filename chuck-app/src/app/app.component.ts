@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChuckApiService } from './chuck-api.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
 
   jokes: string[] = ['joke1', 'joke2', 'joke3'];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private chuckApiService: ChuckApiService) {}
 
   ngOnInit(): void {
     setTimeout(()=>{
@@ -30,6 +31,11 @@ export class AppComponent implements OnInit {
 
   goToHome() {
     this.router.navigate(['home']);
+  }
+
+  notify() {
+    this.counter+=1;
+    this.chuckApiService.notifyMe.next(this.counter);
   }
 
   showCardClicked(){
