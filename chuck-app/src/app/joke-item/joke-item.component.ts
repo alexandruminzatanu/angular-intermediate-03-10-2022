@@ -1,22 +1,33 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-joke-item',
   templateUrl: './joke-item.component.html',
   styleUrls: ['./joke-item.component.scss']
 })
-export class JokeItemComponent implements OnInit {
+export class JokeItemComponent implements OnInit, OnDestroy {
   currentCategory: string = '';
   joke: string = '';
-  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient) { }
+  subs$: Subscription = new Subscription();
+  constructor(private activatedRoute: ActivatedRoute, private httpClient: HttpClient, private router: Router) { }
+
+  ngOnDestroy(): void {
+   this.subs$.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((data: any) => {
       this.currentCategory = data.params.id;
       this.getJoke(this.currentCategory);
     })
+
+
+    this.subs$.add(this.router.events.subscribe((data) => {
+      console.log(data);
+    }));
   }
 
   private getJoke(category: string) {

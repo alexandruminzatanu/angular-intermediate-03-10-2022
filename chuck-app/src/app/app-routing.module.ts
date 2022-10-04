@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './home/home.component';
 import { JokeCategoryListComponent } from './joke-category-list/joke-category-list.component';
 import { JokeItemComponent } from './joke-item/joke-item.component';
@@ -12,7 +13,8 @@ const routes: Routes = [{
   component: JokeCategoryListComponent
 }, {
   path: 'category/:id',
-  component: JokeItemComponent
+  component: JokeItemComponent,
+  canActivate: [AuthGuard]
 }, {
   path: 'details',
   loadChildren: () => import('./joke-details/joke-details.module').then(m => m.JokeDetailsModule)
