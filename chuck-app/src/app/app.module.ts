@@ -11,6 +11,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import { JokeCreateComponent } from './joke-create/joke-create.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import {MatListModule} from '@angular/material/list';
     DupicateDirective,
     JokeCategoryListComponent,
     HomeComponent,
-    JokeItemComponent
+    JokeItemComponent,
+    JokeCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,9 @@ import {MatListModule} from '@angular/material/list';
     MatToolbarModule,
     MatButtonModule,
     HttpClientModule,
-    MatListModule
+    MatListModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

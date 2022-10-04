@@ -1,3 +1,4 @@
+import { JokeCreateComponent } from './joke-create/joke-create.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
@@ -15,6 +16,10 @@ const routes: Routes = [{
   path: 'category/:id',
   component: JokeItemComponent,
   canActivate: [AuthGuard]
+},
+{
+  path: 'create',
+  component: JokeCreateComponent
 }, {
   path: 'details',
   loadChildren: () => import('./joke-details/joke-details.module').then(m => m.JokeDetailsModule)
