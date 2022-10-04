@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
 import { JokeCreateComponent } from './joke-create/joke-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     JokeCategoryListComponent,
     HomeComponent,
     JokeItemComponent,
-    JokeCreateComponent
+    JokeCreateComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

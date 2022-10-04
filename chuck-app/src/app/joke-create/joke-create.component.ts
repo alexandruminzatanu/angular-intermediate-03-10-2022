@@ -14,7 +14,8 @@ export class JokeCreateComponent implements OnInit {
 
   newReactiveJokeForm = new FormGroup({
     'joke': new FormControl('', [Validators.required, Validators.minLength(4)]),
-    'author': new FormControl('', [Validators.required, this.customValidator()])
+    'author': new FormControl('', [Validators.required, this.customValidator()]),
+    'rating': new FormControl(3)
   });
 
   constructor() { }
@@ -23,7 +24,7 @@ export class JokeCreateComponent implements OnInit {
     // this.newReactiveJokeForm.controls.author.valueChanges.pipe(debounceTime(2000)).subscribe(value => console.log(value));
     // this.newReactiveJokeForm.controls.joke.statusChanges.subscribe(value => console.log(value));
     // this.newReactiveJokeForm.controls.joke.addValidators([]);
-    // this.newReactiveJokeForm.controls.joke.updateValueAndValidity();
+    this.newReactiveJokeForm.controls.joke.enable();
   }
 
   jokeChange(value:string) {
