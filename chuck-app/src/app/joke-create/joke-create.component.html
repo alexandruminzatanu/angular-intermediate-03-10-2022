@@ -1,0 +1,56 @@
+
+<p>{{ joke }} </p>
+
+<!-- <input [ngModel]="joke" (ngModelChange)="jokeChange($event)" /> -->
+
+<form [formGroup]="newReactiveJokeForm" (ngSubmit)="onReactiveSubmit()">
+    <input formControlName="author">
+    <div *ngIf="!newReactiveJokeForm.controls['author'].valid && newReactiveJokeForm.controls['author'].touched">Author is required!</div>
+    <div *ngIf="newReactiveJokeForm.controls['author'].errors && newReactiveJokeForm.controls['author'].errors['invalidValue']">
+        {{ newReactiveJokeForm.controls['author'].errors['invalidValue'].correctValue }}
+    </div>
+
+    <input formControlName="joke">
+    <div *ngIf="newReactiveJokeForm.controls['joke'].errors && newReactiveJokeForm.controls['joke'].errors['required']">Joke is required!</div>
+    <div *ngIf="newReactiveJokeForm.controls['joke'].errors && newReactiveJokeForm.controls['joke'].errors['minlength']">
+      Joke be at least 4 characters long.
+    </div>
+
+    <app-star-rating formControlName="rating"></app-star-rating>
+
+    <button type="submit">Register</button>
+    <button type="button" (click)="newReactiveJokeForm.reset()">Reset</button>
+</form>
+
+
+
+<!-- 
+<form #newJokeForm="ngForm" (ngSubmit)="onSubmit(newJokeForm)">
+    <input
+      type="text"
+      placeholder="Joke"
+      required
+      minlength="4"
+      [(ngModel)]="joke"
+      name="joke"
+      #writtenJoke="ngModel"
+    />
+    <div *ngIf="!writtenJoke.valid && writtenJoke.touched">Joke is required!</div>
+    <div *ngIf="writtenJoke.errors && writtenJoke.errors['minlength']">
+      Joke be at least 4 characters long.
+    </div>
+  
+    <input
+      type="text"
+      placeholder="Author"
+      required
+      [(ngModel)]="author"
+      name="author"
+      #jokeAuthor="ngModel"
+    />
+    <div *ngIf="!jokeAuthor.valid && jokeAuthor.touched">Author is required!</div>
+  
+    <button type="submit">Register</button>
+    <button type="button" (click)="newJokeForm.reset()">Reset</button>
+  </form> -->
+  
